@@ -99,6 +99,7 @@ def plot_loss(k, Ap, Aa):
 	q = q0 + 2*q0**5 + 15*q0**9 + 150*q0**13
 	D = (10**(0.1*Aa) - 1)/(10**(0.1*Ap) - 1)
 	n = math.ceil((np.log10(16*D))/np.log10(1/q))
+	#print n
 	r = int(n)/2
 	K = 1 #find out how to calculate this
 	Fw = 0
@@ -131,4 +132,4 @@ def plot_loss(k, Ap, Aa):
 #test0 = elliptic(0.9, 0.1, 50.0) #even order
 #test1 = elliptic(0.7, 0.6, 40.0) #odd order
 plot_loss(0.9, 0.1, 50.0) #even order
-plot_loss(0.7, 0.6, 40.0) #odd order
+plot_loss(0.7, 0.2, 61.0) #odd order
