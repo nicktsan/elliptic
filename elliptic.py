@@ -139,8 +139,7 @@ def plot_loss(H0, a0, b, o0, r, n):
 	plt.show()
 	return 0
 
-
-test0_H0, test0_a0, test0_b, test0_o0, test0_r, test0_n = elliptic(0.9, 0.1, 50.0) #even order
+test0_H0, test0_a0, test0_b, test0_o0, test0_r, test0_n = elliptic(0.8, 0.1, 40.0) #even order
 plot_loss(test0_H0, test0_a0, test0_b, test0_o0, test0_r, test0_n) #even order
 
 test1_H0, test1_a0, test1_b, test1_o0, test1_r, test1_n = elliptic(0.7, 0.2, 61.0) #odd order
