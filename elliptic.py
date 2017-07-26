@@ -27,6 +27,8 @@ def elliptic(k, Ap, Aa):
 	q0 = 0.5 * ((1 - np.sqrt(kp))/(1 + np.sqrt(kp)))
 	q = q0 + 2*q0**5 + 15*q0**9 + 150*q0**13
 	D = (10**(0.1*Aa) - 1)/(10**(0.1*Ap) - 1)
+	# math.ceil(x) returns the x rounded up to the nearest integer
+	# Ex: math.ceil(1.73) returns 2
 	n = math.ceil((np.log10(16*D))/np.log10(1/q)) # for numpy, log10 = log base 10
 	r = int(n)/2
 	A = (1/(2*n))*np.log((10**(0.05*Ap) + 1)/(10**(0.05*Ap) - 1)) # for numpy, log = ln()
@@ -35,7 +37,7 @@ def elliptic(k, Ap, Aa):
 	# in equation 10.92 in the textbook
 	# this series rapidly coverges usually after 3 or 4 terms.
 	sum0n = 0
-	for m in range(0, 11):
+	for m in range(0, 11): # for (int m = 0; m < 11; m++)
 		sum0n += ((-1)**m) * (q**(m*(m+1))) * np.sinh((2*m + 1)*A)
 	
 	# for loop for calculating the convergent infinite series of 
@@ -44,10 +46,10 @@ def elliptic(k, Ap, Aa):
 	sum0d = 0
 	for m in range(1, 11):
 		sum0d += ((-1)**m) * (q**(m**2)) * np.cosh(2*m*A)
-
+	# np.absolute(x) returns the absolute value of x.
 	o0 = np.absolute(((2*q**0.25) * sum0n)/(1 + 2 * sum0d))
 	W = np.sqrt((1 + k*o0**2) * (1 + o0**2/k))
-	om = np.zeros(r+1)
+	om = np.zeros(r+1) # create an array of zeros of size r+1.
 	for i in range(1, r+1):
 		u = i
 		if (n%2 == 0):
@@ -139,6 +141,7 @@ def plot_loss(H0, a0, b, o0, r, n):
 	plt.show()
 	return 0
 
+#call the functions.
 test0_H0, test0_a0, test0_b, test0_o0, test0_r, test0_n = elliptic(0.8, 0.1, 40.0) #even order
 plot_loss(test0_H0, test0_a0, test0_b, test0_o0, test0_r, test0_n) #even order
 
